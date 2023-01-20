@@ -7,7 +7,7 @@ const users = [
   {
     userName: 'midudev',
     name: 'Miguel Ángel Durán',
-    isFollowing: true,
+    isFollowing: true
   },
   {
     userName: 'pheralb',
