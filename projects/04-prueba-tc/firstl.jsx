@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const ENDPOINT_CAT = 'https://catfact.ninja/fact'
 const IMAGEN_CAT = 'https://cataas.com/'
 
-const App = () => {
+const First = () => {
   const [fact, setFact] = useState()
   const [imgUrl, setImgUrl] = useState()
 
@@ -13,14 +13,6 @@ const App = () => {
     console.log(data)
     const { fact } = data
     setFact(fact)
-  }
-
-  useEffect(() => {
-    getCatFect()
-  }, [])
-
-  const imgCatFecth = async () => {
-    if (!fact) return
     const wordFact = fact.split(' ', 3).join(' ')
     console.log(wordFact)
     const respImg = await fetch(`https://cataas.com/cat/says/${wordFact}?size=50&color=red&json=true`)
@@ -31,8 +23,8 @@ const App = () => {
   }
 
   useEffect(() => {
-    imgCatFecth()
-  }, [fact])
+    getCatFect()
+  }, [])
 
   return (
     <main className='container'>
@@ -43,4 +35,4 @@ const App = () => {
   )
 }
 
-export default App
+export default First
