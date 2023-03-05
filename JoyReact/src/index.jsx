@@ -1,43 +1,61 @@
+'use strict'
 
-const StartRating = ({ rating = 0 }) => {
-  const star = (
-    <img
-      alt=''
-      className='gold-star'
-      src='https://sandpack-bundler.vercel.app/img/gold-star.svg'
-    />
-  )
-  const stars = Array(rating).fill(star)
+function App () {
+  const [count, setCount] = React.useState(0)
+
+  const increment = (value) => {
+    if (value > 0) {
+      const newValor = count + 1
+      setCount(newValor)
+    } else {
+      const newValor = count - 1
+      setCount(newValor)
+    }
+  }
+
+  const incrementPlus = (value) => {
+    if (value > 0) {
+      const newValor = count + 10
+      setCount(newValor)
+    } else {
+      const newValor = count - 10
+      setCount(newValor)
+    }
+  }
+
+  const reset = () => {
+    setCount(0)
+  }
+
+  const random = () => {
+    let numberRandom = Math.floor(Math.random() * 100)
+    numberRandom = count + numberRandom
+    setCount(numberRandom)
+  }
 
   return (
     <div>
-      {stars}
+      <h1>ccurrente value:
+        {' '}
+        <span>{count}</span>
+      </h1>
+      <br />
+      <button onClick={() => { increment(1) }}>+1</button>
+      <button onClick={() => { incrementPlus(1) }}>+10</button>
+      <button onClick={() => { reset() }}>reset</button>
+      <button onClick={() => { random() }}>random</button>
+      <button onClick={() => { increment(-1) }}>-1</button>
+      <button onClick={() => { incrementPlus(-10) }}>-10</button>
     </div>
   )
 }
-
-// fnt range
-const range = (start, end, step = 1) => {
-  const output = []
-  if (typeof end === 'undefined') {
-    end = start
-    start = 0
-  }
-  for (let i = start; i < end; i += step) {
-    output.push(i)
-  }
-  return output
-}
-
-console.log(range(1, 4))
+//  npx babel --watch src --out-dir . --presets babel-preset-react-app/prod
 
 const container = document.getElementById('root')
 const root = ReactDOM.createRoot(container)
 
 root.render(
   <div>
-    <StartRating rating={4} />
-    <StartRating rating={5} />
-    <StartRating rating={1} />
+    <App />
   </div>
 )
