@@ -14,7 +14,7 @@ function StickerPad () {
           ...stickerData,
           x: event.clientX,
           y: event.clientY,
-          id: crypto.randomUUID()
+          id: Math.random() // crypto.randomUUID()
         }
 
         const nextStickers = [...stickers, newSticker]
